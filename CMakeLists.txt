@@ -77,6 +77,7 @@ conan_cmake_run(
         BASIC_SETUP
         BUILD missing
         NO_OUTPUT_DIRS
+        SETTINGS compiler.libcxx=libstdc++11
 )
 
 # conan

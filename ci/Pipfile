@@ -1,0 +1,15 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+conan = "~=1.25.2"
+pytest = "~=5.4.3"
+pytest-benchmark = "~=3.2.3"
+jupyter_kernel_test = "~=0.3"
+jupyter-kernel-mgmt = "~=0.5.1"
+ipython = "~=7.14.0"
+ipykernel = "~=5.2.1"

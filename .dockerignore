@@ -300,3 +300,4 @@ gen
 **/.#session.*
 /.dockerignore
 /docker
+!/ci/**/*.sh
