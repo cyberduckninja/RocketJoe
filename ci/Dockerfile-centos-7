@@ -1,0 +1,35 @@
+FROM centos:centos7.8.2003
+
+RUN yum -y install centos-release-scl
+RUN yum -y install rh-python36\
+                   rh-python36-pip \
+                   make\
+                   devtoolset-7-binutils \
+                   devtoolset-7-gcc \
+                   devtoolset-7-gcc-c++ \
+                   git \
+                   ccache \
+                   devtoolset-7-libasan-devel \
+                   devtoolset-7-libubsan-devel
+
+SHELL [ "/usr/bin/scl", "enable", "devtoolset-7", "rh-python36" ]
+RUN pip install --upgrade pip && pip install conan cmake
+
+WORKDIR /app
+
+
+RUN conan profile new default --detec
+
+COPY ./conanfile.txt ./
+
+RUN conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan && \
+    conan remote add cyberduckninja https://api.bintray.com/conan/cyberduckninja/conan && \
+    conan install .  --build missing -s build_type=Release -s compiler.libcxx=libstdc++11
+
+COPY . ./
+
+WORKDIR ./build
+
+RUN cmake .. -DCMAKE_BUILD_TYPE=Release -DDEV_MODE=ON && \
+    cmake --build .
+RUN  jupyter kernelspec install --user kernels/rocketjoe

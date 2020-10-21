@@ -20,6 +20,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan && \
     conan remote add cyberduckninja https://api.bintray.com/conan/cyberduckninja/conan && \
     conan install . --build missing -s build_type=Release -s compiler.libcxx=libstdc++11
+
 COPY . ./
 
 WORKDIR ./build

@@ -17,12 +17,12 @@ add_executable(${CURRENT_TARGET} ${${CURRENT_TARGET}_sources} ${${CURRENT_TARGET
 
 target_link_libraries(
         ${CURRENT_TARGET} PRIVATE
-        ${CONAN_LIBS}
+        rocketjoe::log
         rocketjoe::configuration
         rocketjoe::python_sandbox
-        rocketjoe::log
         rocketjoe::process_pool
         dl
+        ${CONAN_LIBS}
 )
 
 

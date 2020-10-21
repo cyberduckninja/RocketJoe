@@ -21,6 +21,7 @@ set_property(TARGET rocketjoe_${CURRENT_TARGET} PROPERTY EXPORT_NAME ${CURRENT_T
 
 target_link_libraries(
         rocketjoe_${CURRENT_TARGET} PRIVATE
+        rocketjoe::log
         ${CONAN_LIBS}
 )
 
@@ -38,4 +39,6 @@ install(TARGETS
         ARCHIVE DESTINATION lib
 )
 
-add_subdirectory(test)
+if(DEV_MODE)
+    #add_subdirectory(test)
+endif()
